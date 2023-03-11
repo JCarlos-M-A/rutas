@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista choferes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Hola mundo</h1>
+    <table class="pure-table pure-table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Ap. Paterno</th>
+                <th>Ap. Materno</th>
+                <th>Licencia</th>
+                <th>Telefono</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="lista"></tbody>
+    </table>
+
+
+    <script>
+        let lista = document.getElementById("lista");
+        fetch('http://localhost:8080/Gen3-Rutas/choferes/listar2')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+
+                data.forEach((element, i) => {
+                    var table = document.getElementById("lista");
+
+                    var row = table.insertRow(i);
+
+                    var id = row.insertCell(0);
+                    var nombre = row.insertCell(1);
+                    var apMaterno = row.insertCell(2);
+                    var apPaterno = row.insertCell(3);
+                    var disponibilidad = row.insertCell(4);
+                    var telefono = row.insertCell(5);
+                    
+                    var boton1 = row.insertCell(6);
+                    var boton2 = row.insertCell(7);
+                    var boton3 = row.insertCell(8);
+
+                    id.innerHTML = element.id;
+                    nombre.innerHTML = element.nombre;
+                    apMaterno.innerHTML = element.apMaterno;
+                    apPaterno.innerHTML = element.apPaterno;
+                    disponibilidad.innerHTML = element.disponibilidad;
+                    telefono.innerHTML = element.telefono;
+
+                    let button11 = document.createElement("button");
+                    button11.data = "detalles";
+                    boton1.innerHTML = button11;
+                });
+
+            });
+
+    //console.log(div.childNodes); 
+    </script>
+</body>
+
+</html>
