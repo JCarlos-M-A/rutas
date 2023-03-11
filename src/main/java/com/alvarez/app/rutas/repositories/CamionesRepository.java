@@ -25,6 +25,7 @@ public class CamionesRepository implements IRepository<Camion>{
                 Camion a = this.getCamion(rs);
                 camiones.add(a);
             }
+
         }catch (SQLException e){
             throw new RuntimeException();
         }
